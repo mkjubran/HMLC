@@ -1,9 +1,9 @@
 objects/AnnexBread.r.o: \
- /u/Downloads/HMStitching/HMS/HM_Original/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibDecoder/AnnexBread.cpp \
- /u/Downloads/HMStitching/HMS/HM_Original/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibDecoder/AnnexBread.h \
- /u/Downloads/HMStitching/HMS/HM_Original/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibCommon/CommonDef.h \
- /u/Downloads/HMStitching/HMS/HM_Original/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibCommon/TypeDef.h
- /u/Downloads/HMStitching/HMS/HM_Original/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibDecoder/AnnexBread.cpp :
- /u/Downloads/HMStitching/HMS/HM_Original/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibDecoder/AnnexBread.h :
- /u/Downloads/HMStitching/HMS/HM_Original/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibCommon/CommonDef.h :
- /u/Downloads/HMStitching/HMS/HM_Original/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibCommon/TypeDef.h :
+ /data1/Mohd_All/LearnableCoding/HMLC/HM/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibDecoder/AnnexBread.cpp \
+ /data1/Mohd_All/LearnableCoding/HMLC/HM/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibDecoder/AnnexBread.h \
+ /data1/Mohd_All/LearnableCoding/HMLC/HM/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibCommon/CommonDef.h \
+ /data1/Mohd_All/LearnableCoding/HMLC/HM/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibCommon/TypeDef.h
+ /data1/Mohd_All/LearnableCoding/HMLC/HM/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibDecoder/AnnexBread.cpp :
+ /data1/Mohd_All/LearnableCoding/HMLC/HM/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibDecoder/AnnexBread.h :
+ /data1/Mohd_All/LearnableCoding/HMLC/HM/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibCommon/CommonDef.h :
+ /data1/Mohd_All/LearnableCoding/HMLC/HM/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibCommon/TypeDef.h :

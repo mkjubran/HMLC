@@ -1,5 +1,5 @@
 objects/libmd5.d.o: \
- /u/Downloads/HMStitching/HMS/HM_Original/build/linux/lib/TLibCommon/../../../../source/Lib/libmd5/libmd5.c \
- /u/Downloads/HMStitching/HMS/HM_Original/build/linux/lib/TLibCommon/../../../../source/Lib/libmd5/libmd5.h
- /u/Downloads/HMStitching/HMS/HM_Original/build/linux/lib/TLibCommon/../../../../source/Lib/libmd5/libmd5.c :
- /u/Downloads/HMStitching/HMS/HM_Original/build/linux/lib/TLibCommon/../../../../source/Lib/libmd5/libmd5.h :
+ /data1/Mohd_All/LearnableCoding/HMLC/HM/build/linux/lib/TLibCommon/../../../../source/Lib/libmd5/libmd5.c \
+ /data1/Mohd_All/LearnableCoding/HMLC/HM/build/linux/lib/TLibCommon/../../../../source/Lib/libmd5/libmd5.h
+ /data1/Mohd_All/LearnableCoding/HMLC/HM/build/linux/lib/TLibCommon/../../../../source/Lib/libmd5/libmd5.c :
+ /data1/Mohd_All/LearnableCoding/HMLC/HM/build/linux/lib/TLibCommon/../../../../source/Lib/libmd5/libmd5.h :
