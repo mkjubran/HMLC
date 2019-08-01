@@ -1,0 +1,15 @@
+Input File (YUV) = ../vid/park_joy_640480.yuv
+Input File (MP4) = ../vid/park_joy_640480.mp4
+Ref_active = 
+QP = 24
+Rate = 10000
+fps = 30
+MaxCUSize = 64
+MaxPartitionDepth = 4
+
+File Size (.bin) =  Bytes
+
+
+Number of Frames = 1
+Number of written bites = 
+Bit Rate =  kbps
