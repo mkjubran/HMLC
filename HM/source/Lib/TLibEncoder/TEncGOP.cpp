@@ -1946,6 +1946,8 @@ Void TEncGOP::printOutSummary(UInt uiNumAllPicCoded, Bool isField, const Bool pr
   m_gcAnalyzeB.printOut('b', chFmt, printMSEBasedSNR, printSequenceMSE, bitDepths);
 #endif
 
+
+
   if (!m_pcCfg->getSummaryOutFilename().empty())
   {
     m_gcAnalyzeAll.printSummary(chFmt, printSequenceMSE, bitDepths, m_pcCfg->getSummaryOutFilename());
@@ -2332,6 +2334,8 @@ Void TEncGOP::xCalculateAddPSNR( TComPic* pcPic, TComPicYuv* pcPicD, const Acces
     c += 32;
   }
 
+//printf("Hello\n"); //jubran
+
 #if ADAPTIVE_QP_SELECTION
   printf("POC %4d TId: %1d ( %c-SLICE, nQP %d QP %d ) %10d bits",
          pcSlice->getPOC(),
@@ -2377,6 +2381,30 @@ Void TEncGOP::xCalculateAddPSNR( TComPic* pcPic, TComPicYuv* pcPicD, const Acces
     printf("]");
   }
 
+  //added by jubran to get rate and refernce frames
+  FILE * pFile;
+  if (pcSlice->getPOC()>0)
+  {
+  pFile = fopen ("HMLC_InfoPerFrame.txt","a");
+  }
+  else
+  {
+  pFile = fopen ("HMLC_InfoPerFrame.txt","w");
+  }
+  //fprintf (pFile, "Name");
+  fprintf(pFile,"%4d %c %10d", pcSlice->getPOC(), c , uibits );
+  for (Int iRefList = 0; iRefList < 2; iRefList++)
+  {
+    fprintf(pFile," [L%d ", iRefList);
+    for (Int iRefIndex = 0; iRefIndex < pcSlice->getNumRefIdx(RefPicList(iRefList)); iRefIndex++)
+    {
+      fprintf (pFile, "%d ", pcSlice->getRefPOC(RefPicList(iRefList), iRefIndex)-pcSlice->getLastIDR());
+    }
+    fprintf(pFile,"]");
+  }
+  fprintf(pFile,"\n");
+  fclose (pFile);
+  // end of edit
   cscd.destroy();
 }
 

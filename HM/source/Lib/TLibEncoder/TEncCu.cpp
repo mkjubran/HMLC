@@ -264,7 +264,7 @@ Void TEncCu::encodeCtu ( TComDataCU* pCtu )
     setCodeChromaQpAdjFlag(true);
   }
 
-  printf("(%d,%d)\n",pCtu->getCUPelY(),pCtu->getCUPelX()); //jubran
+  //printf("(%d,%d)   %d bits \n",pCtu->getCUPelY(),pCtu->getCUPelX(),pCtu->getTotalBits()); //jubran
   
   // Encode CU data
   xEncodeCU( pCtu, 0, 0 );
