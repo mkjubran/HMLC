@@ -21,7 +21,7 @@ parser.add_argument('--fps',nargs='?',default =30, type=int, help='frames per se
 parser.add_argument('--path',nargs='?',default ='../HMLC_Results/', type=str, help='path for results [../HMLC_Results]')
 parser.add_argument('--w',nargs='?',default =640, type=int, help='width [640]')
 parser.add_argument('--h',nargs='?',default =480, type=int, help='hight [480]')
-parser.add_argument('--rate',nargs='?',default =10000, type=str, help='rate [100k]')
+parser.add_argument('--rate',nargs='?',default ='1000k', type=str, help='rate [100k]')
 parser.add_argument('--cfg',nargs='?',default ='./encoder_lowdelay_P_main.cfg', type=str, help='configuration file [./encoder_lowdelay_P_main.cfg]')
 args = parser.parse_args()
 
