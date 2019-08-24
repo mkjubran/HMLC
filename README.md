@@ -34,7 +34,7 @@ Option | Description [default]
 --cfg | HM configuration file [./encoder_lowdelay_P_main.cfg]
 
 A successful run will produce the following:
-- a binary file of rates per frame 
+- a binary file with number of bits required to encode each picture 
 - a folder contains the encoded pictures; Px.jpg is the fifth encoded picture
 - a folder contains all inter-prediction pictures; Px_y.jpg is the reference picture y used for inter-prediction of picture x
 
