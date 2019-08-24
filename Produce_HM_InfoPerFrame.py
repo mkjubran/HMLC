@@ -102,8 +102,13 @@ if __name__ == '__main__':
 
  vid=filename.split('/')[-1]
  video_path=path+vid[:-4]+'/'
- osout = call('rm -rf {}'.format(path))
- osout = call('mkdir {}'.format(path[:-1]))
+ 
+ if (not os.path.isdir(path[:-1])):
+    osout = call('mkdir {}'.format(path[:-1]))
+
+ if (os.path.isdir(video_path[:-1])):
+    osout = call('rm -rf {}'.format(video_path[:-1]))
+
  osout = call('mkdir {}'.format(video_path[:-1]))
  osout = call('rm -rf {}'.format(video_path+'/POC'))
  osout = call('mkdir {}'.format(video_path+'/POC'))
