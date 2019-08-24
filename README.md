@@ -12,8 +12,8 @@ In order to compile and run the tools provided in this repository you will need:
 1. Python 2.7 
 2. ffmpeg (version 2.8.15 or higher)
 
-## Rate and reference framesSequence-Level Reference Frames
-To produce a binary file of rates per frame and a folder containing the encoded pictures and all candidate predictors run
+## To produce data for training the network
+To produce the necessary data to train the network run
 
 ```
 python Produce_HM_InfoPerFrame.py --f=../vid/park_joy_640480.mp4
@@ -34,3 +34,7 @@ Option | Description [default]
 --cfg | HM configuration file [./encoder_lowdelay_P_main.cfg]
 
 A successful run will produce the following:
+- a binary file of rates per frame 
+- a folder contains the encoded pictures; Px.jpg is the fifth encoded picture
+- a folder contains all inter-prediction pictures; Px_y.jpg is the reference picture y used for inter-prediction of picture x
+
