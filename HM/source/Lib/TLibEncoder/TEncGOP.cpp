@@ -2334,7 +2334,6 @@ Void TEncGOP::xCalculateAddPSNR( TComPic* pcPic, TComPicYuv* pcPicD, const Acces
     c += 32;
   }
 
-//printf("Hello\n"); //jubran
 
 #if ADAPTIVE_QP_SELECTION
   printf("POC %4d TId: %1d ( %c-SLICE, nQP %d QP %d ) %10d bits",
@@ -2400,7 +2399,7 @@ Void TEncGOP::xCalculateAddPSNR( TComPic* pcPic, TComPicYuv* pcPicD, const Acces
     {
       fprintf (pFile, "%d ", pcSlice->getRefPOC(RefPicList(iRefList), iRefIndex)-pcSlice->getLastIDR());
     }
-    fprintf(pFile,"]");
+    fprintf(pFile,"L%d]",iRefList);
   }
   fprintf(pFile,"\n");
   fclose (pFile);

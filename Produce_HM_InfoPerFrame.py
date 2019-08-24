@@ -6,6 +6,8 @@ import os, sys, subprocess, pdb
 import argparse, re
 import matplotlib.pyplot as plt
 import datetime, math, time
+import pickle
+from array import *
 
 ###--------------------------------------------------------------
 # Instantiate the parser
@@ -45,24 +47,37 @@ def export_frames(fn):
     return 
 
 ###--------------------------------------------------------------
-def export_YUVframes(fn): ## not ready, kept in case needed inthe future
-    osout = call('rm -rf {}'.format(video_path))
-    osout = call('mkdir {}'.format(video_path))
-    osout = call('mkdir {}/pngparallel'.format(video_path))
-    fYUVCnt=1;
-    FSize=(Width*Hight)+((Width/2)*(Hight/2))+((Width/2)*(Hight/2));
+def produce_training_data(finfo):
+    with open(finfo) as fi:
+       lines = fi.readlines()
+    Bits=[]
+    for cnt in range(len(lines)):
+       line = re.sub(' +', ' ', lines[cnt]).split(' ')
+       POC = line[1]
+       Frame = str(int(line[1])+1) ## Frame=POC+1
+       osout = call('cp -rf {} {}'.format(video_path+'/POC/'+Frame+'.jpg',video_path+'/HMLCPOC/P'+POC+'.jpg'))
+       Bits.append(int(line[3]))
+       L0 = re.sub(' +', ' ', lines[cnt]).split('L0')[1].split(' ')[1:-1]
+       L1 = re.sub(' +', ' ', lines[cnt]).split('L1')[1].split(' ')[1:-1]
+       if (L0 != []):
+          for cnt2 in range(len(L0)):
+             L0Frame= str(int(L0[cnt2])+1)
+             L0POC=L0[cnt2]
+             osout = call('cp -rf {} {}'.format(video_path+'/POC/'+L0Frame+'.jpg',video_path+'/HMLCPOC/P'+POC+'_L0_'+L0POC+'.jpg'))
+       if (L1 != []):
+          for cnt2 in range(len(L1)):
+             L1Frame= str(int(L1[cnt2])+1)
+             L1POC=L1[cnt2]
+             osout = call('cp -rf {} {}'.format(video_path+'/POC/'+L1Frame+'.jpg',video_path+'/HMLCPOC/P'+POC+'_L1_'+L1POC+'.jpg'))
 
-    fnYUV=(fn[0:(len(fn)-4)]+'.yuv')
-    with open(fnYUV, "rb") as fYUVR:
-       content = fYUVR.read(int(FSize))
-       while content != '':
-          with open('{}/pngparallel/{}.yuv'.format(path,fYUVCnt),"wb") as fW:
-             fW.write(content)
-          fW.close()
-          fYUVCnt=fYUVCnt+1;
-          content = fYUVR.read(int(FSize))
-    fYUVR.close()
-    return 
+    fb = open(video_path+'/HMLCPOC/rate.bin','wb')
+    pickle.dump(Bits,fb)
+    fb.close()
+    print(Bits)
+    fb = open(video_path+'/HMLCPOC/rate.bin','rb')
+    Bitsnew=pickle.load(fb)
+    print(Bitsnew)
+    return
 
 ###--------------------------------------------------------------
 if __name__ == '__main__':
@@ -80,26 +95,25 @@ if __name__ == '__main__':
  cfg=args.cfg;
 
  vid=filename.split('/')[-1]
- print(vid)
  video_path=path+vid[:-4]+'/'
- osout = call('rm -rf {}'.format(path))
- osout = call('mkdir {}'.format(path[:-1]))
- osout = call('mkdir {}'.format(video_path[:-1]))
- osout = call('rm -rf {}'.format(video_path+'/POC'))
- osout = call('mkdir {}'.format(video_path+'/POC'))
- osout = call('rm -rf {}'.format(video_path+'/HMLCPOC'))
- osout = call('mkdir {}'.format(video_path+'/HMLCPOC'))
+# osout = call('rm -rf {}'.format(path))
+# osout = call('mkdir {}'.format(path[:-1]))
+# osout = call('mkdir {}'.format(video_path[:-1]))
+# osout = call('rm -rf {}'.format(video_path+'/POC'))
+# osout = call('mkdir {}'.format(video_path+'/POC'))
+# osout = call('rm -rf {}'.format(video_path+'/HMLCPOC'))
+# osout = call('mkdir {}'.format(video_path+'/HMLCPOC'))
 
- export_frames(filename);
- osout = call('ffmpeg -y -i {} -vcodec rawvideo -pix_fmt yuv420p {}'.format(filename,filename[:-3]+'yuv'))
+# export_frames(filename);
+# osout = call('ffmpeg -y -i {} -vcodec rawvideo -pix_fmt yuv420p {}'.format(filename,filename[:-3]+'yuv'))
 
  if (rate == 0 ):
    ratectl=0
  else:
    ratectl=1
 
- osout = call('rm -rf ../vid/HMEncodedVideo.bin')
- osout = call('rm -rf encoder.log')
- print(rate)
- osout = call('./HM/bin/TAppEncoderStatic -c {} --InputFile={} --SourceWidth={} --SourceHeight={} --SAO=1 --QP={} --FrameRate={} --FramesToBeEncoded={} --MaxCUSize={} --MaxPartitionDepth={} --QuadtreeTULog2MaxSize=4 --BitstreamFile={} --RateControl={} --TargetBitrate={}'.format(cfg,filename[:-3]+'yuv',w,h,qp,fps,nf,mcu,mpd,path+'/HMEncoded.bin',ratectl,rate))
- osout = call('mv HMLC_InfoPerFrame.txt {}'.format(video_path+'/HMLCPOC/HMLC_InfoPerFrame.txt'))
+# osout = call('rm -rf ../vid/HMEncodedVideo.bin')
+# osout = call('rm -rf encoder.log')
+# osout = call('./HM/bin/TAppEncoderStatic -c {} --InputFile={} --SourceWidth={} --SourceHeight={} --SAO=1 --QP={} --FrameRate={} --FramesToBeEncoded={} --MaxCUSize={} --MaxPartitionDepth={} --QuadtreeTULog2MaxSize=4 --BitstreamFile={} --RateControl={} --TargetBitrate={}'.format(cfg,filename[:-3]+'yuv',w,h,qp,fps,nf,mcu,mpd,path+'/HMEncoded.bin',ratectl,rate))
+# osout = call('mv HMLC_InfoPerFrame.txt {}'.format(video_path+'/HMLCPOC/HMLC_InfoPerFrame.txt'))
+ produce_training_data(video_path+'/HMLCPOC/HMLC_InfoPerFrame.txt')
