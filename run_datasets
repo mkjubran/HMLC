@@ -1,0 +1,16 @@
+#!/bin/bash
+python make_video_training_profile_wrps_v3.py --in_dir=./zahra_1280_720 --out_dir=train_frames_zahra_1280_720_CRF30_RPS0_10d_curated --override=yes --nrps=0 --crf=30 --gop=4 --w=1280  --h=720
+
+#python make_video_training_profile_wrps_v3.py --in_dir=./mp4s_HD --out_dir=./train_frames_HD_CRF20_RPS0_10d_curated  --override=yes --nrps=0 --crf=20 --gop=4 --w=1280  --h=720
+#python make_video_training_profile_wrps_v3.py --in_dir=./mp4s_HD --out_dir=./train_frames_HD_CRF22_RPS0_10d_curated  --override=yes --nrps=0 --crf=22 --gop=4 --w=1280  --h=720
+#python make_video_training_profile_wrps_v3.py --in_dir=./mp4s_HD --out_dir=./train_frames_HD_CRF32_RPS0_10d_curated  --override=yes --nrps=0 --crf=32 --gop=4 --w=1280  --h=720
+
+python make_video_training_profile_wrps_v3.py --in_dir=./zahra_1920_1080 --out_dir=./train_frames_zahra_1920_1080_CRF30_RPS0_10d_curated  --override=yes --nrps=0 --crf=30 --gop=4 --w=1920  --h=1080
+python make_video_training_profile_wrps_v3.py --in_dir=./zahra_1920_1080 --out_dir=./train_frames_zahra_1920_1080_CRF30_RPS1_10d_curated  --override=yes --nrps=1 --crf=30 --gop=4 --w=1920  --h=1080
+python make_video_training_profile_wrps_v3.py --in_dir=./zahra_1920_1080 --out_dir=./train_frames_zahra_1920_1080_CRF40_RPS0_10d_curated  --override=yes --nrps=0 --crf=40 --gop=4 --w=1920  --h=1080
+python make_video_training_profile_wrps_v3.py --in_dir=./zahra_1920_1080 --out_dir=./train_frames_zahra_1920_1080_CRF40_RPS1_10d_curated  --override=yes --nrps=1 --crf=40 --gop=4 --w=1920  --h=1080
+
+
+
+
+
