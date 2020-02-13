@@ -71,7 +71,7 @@ EPS = 1e-12
 # CROP_SIZE = 256
 RPS = a.rps_size
 
-CROP_SIZE = 256*2
+CROP_SIZE = 128*2
 a.scale_size = CROP_SIZE
 
 # a.aspect_ratio = float(1280)/720
@@ -862,6 +862,7 @@ def main():
             list_rate_pred_err = [] ; list_loss_L1 = []
             list_ssim_it = [] ; list_ssim_io = [] ; list_ssim_to = []
             list_predicted_rate = [] ; list_filenames = []
+            fid_rate = open('rate.txt', "a+")
             for step in range(max_steps):
                 # results = sess.run(display_fetches)
 
@@ -931,14 +932,17 @@ def main():
                 # list_predicted_rate.append(results["predicted_rate"])
 
                 filesets = save_images(results["display"])
+                #fid_rate = open('rate.txt', "a+")
                 for i, f in enumerate(filesets):
                     list_filenames.append(f["name"])
                     #print("Evaluated image:", f["name"])
                     #print("...Predicted rate:", results["predicted_rate"])
-                    open('rate,.txt' "a+").write('{} {}\n'.format(f["name"],results["predicted_rate"])) #added jubran
+                    #open('rate.txt', "a+").write('{} {}\n'.format(f["name"],results["predicted_rate"])) #added jubran
+                    fid_rate.write('{} {}\n'.format(f["name"],results["predicted_rate"])) # jubran
                 index_path = append_index(filesets)
+                #fid_rate.close() ##jubran
             print("wrote index at", index_path)
-
+            fid_rate.close() ##jubran
 
             # test_summary = tf.Summary()
             test_summary = tf.Summary()

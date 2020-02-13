@@ -71,7 +71,7 @@ EPS = 1e-12
 # CROP_SIZE = 256
 RPS = a.rps_size
 
-CROP_SIZE = 256*2
+CROP_SIZE = 128*2
 a.scale_size = CROP_SIZE
 
 # a.aspect_ratio = float(1280)/720
@@ -935,7 +935,7 @@ def main():
                     list_filenames.append(f["name"])
                     #print("Evaluated image:", f["name"])
                     #print("...Predicted rate:", results["predicted_rate"])
-                    open('rate,.txt' "a+").write('{} {}\n'.format(f["name"],results["predicted_rate"])) #added jubran
+                    open('rate_2.txt', "a+").write('{} {}\n'.format(f["name"],results["predicted_rate"])) #added jubran
                 index_path = append_index(filesets)
             print("wrote index at", index_path)
 
