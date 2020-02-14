@@ -25,7 +25,10 @@ with open('rate_{}.txt'.format(in_dir)) as f:
 # you may also want to remove whitespace characters like `\n` at the end of each line
 content = [x.strip() for x in content] 
 
-#call('mkdir ./preproc/{}_Completed'.format(in_dir))
+if not os.path.isdir('./preproc/{}_Completed'.format(in_dir)):
+    call('mkdir ./preproc/{}_Completed'.format(in_dir))
+
 for filename in content:
     f = '{}.png'.format(filename.split(' ')[0])
-    call('mv ./preproc/{}/{} ./preproc/{}_Completed/.'.format(in_dir,f,in_dir))
+    if os.path.exists('./preproc/{}/{}'.format(in_dir,f)):
+       call('mv ./preproc/{}/{} ./preproc/{}_Completed/.'.format(in_dir,f,in_dir))
