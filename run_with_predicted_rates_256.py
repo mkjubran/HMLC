@@ -603,8 +603,8 @@ def save_images(fetches, step=None):
             fileset[kind] = filename
             out_path = os.path.join(image_dir, filename)
             contents = fetches[kind][i]
-            with open(out_path, "wb") as f:
-                f.write(contents)
+        #    with open(out_path, "wb") as f: //commented jubran
+        #        f.write(contents) //commented jubran
         filesets.append(fileset)
     return filesets
 

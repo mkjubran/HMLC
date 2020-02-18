@@ -53,7 +53,6 @@ else:
 
 print(in_dir)
 
-'''
 if os.path.exists('./rate_{}.txt'.format(in_dir)):
    with open('rate_{}.txt'.format(in_dir)) as f:
      content = f.readlines()
@@ -71,13 +70,19 @@ if os.path.exists('./rate_{}.txt'.format(in_dir)):
 
 ## Run the rate predict model
 if GPU == 0:
-   call('mv -f rate_{}.txt rate.txt'.format(in_dir));
-   call('python3 run_with_predicted_rates_256.py --gpu 0 --lr 0 --rps_size 1 --mode test --l1_weight 10 --output_dir {} --max_epochs $EPOCH_STEP --checkpoint $LABEL --input_dir ./preproc/{} --which_direction AtoB'.format(LABEL,in_dir));
-   call('mv -f rate.txt rate_{}.txt'.format(in_dir))
+   if os.path.exists('./rate_{}.txt'.format(in_dir)):
+      call('mv -f rate_{}.txt rate.txt'.format(in_dir));
+   try:
+      call('python3 run_with_predicted_rates_256.py --gpu 0 --lr 0 --rps_size 1 --mode test --l1_weight 10 --output_dir {} --max_epochs 1 --checkpoint {} --input_dir ./preproc/{} --which_direction AtoB'.format(LABEL,LABEL,in_dir));
+   finally:
+      call('mv -f rate.txt rate_{}.txt'.format(in_dir))
 elif GPU == 1:
-   call('mv -f rate_{}.txt rate_2.txt'.format(in_dir));
-   call('python3 run_with_predicted_rates_256_2.py --gpu 1 --lr 0 --rps_size 1 --mode test --l1_weight 10 --output_dir {} --max_epochs $EPOCH_STEP --checkpoint $LABEL --input_dir ./preproc/{} --which_direction AtoB'.format(LABEL,in_dir));
-   call('mv -f rate_2.txt rate_{}.txt'.format(in_dir))
+   if os.path.exists('./rate_{}.txt'.format(in_dir)):
+      call('mv -f rate_{}.txt rate_2.txt'.format(in_dir));
+   try:
+      call('python3 run_with_predicted_rates_256_2.py --gpu 1 --lr 0 --rps_size 1 --mode test --l1_weight 10 --output_dir {} --max_epochs 1 --checkpoint {} --input_dir ./preproc/{} --which_direction AtoB'.format(LABEL,LABEL,in_dir));
+   finally:
+      call('mv -f rate_2.txt rate_{}.txt'.format(in_dir))
 else:
    print('GPU must be 0 or 1')
-'''
+
